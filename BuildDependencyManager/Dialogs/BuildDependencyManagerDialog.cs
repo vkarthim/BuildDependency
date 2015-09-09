@@ -15,8 +15,8 @@ namespace BuildDependency.Dialogs
 		private List<Server> _servers;
 		private ListStore _store;
 		private readonly ListView _listView;
-		private DataField<string> _artifactsSource;
-		private DataField<string> _artifactsPath;
+		private readonly DataField<string> _artifactsSource;
+		private readonly DataField<string> _artifactsPath;
 
 		public BuildDependencyManagerDialog()
 		{
@@ -94,8 +94,8 @@ namespace BuildDependency.Dialogs
 			var source = string.Format("{0}::{1}\n({2})", artifact.Server.Name, artifact.ConfigName, artifact.TagLabel);
 			if ((artifact.Condition & Conditions.All) != Conditions.All && artifact.Condition != Conditions.None)
 				source = string.Format("{0}\nCondition: {1}", source, artifact.Condition);
-			_store.SetValue<string>(row, _artifactsSource, source);
-			_store.SetValue<string>(row, _artifactsPath, artifact.PathRules);
+			_store.SetValue(row, _artifactsSource, source);
+			_store.SetValue(row, _artifactsPath, artifact.PathRules);
 		}
 
 		private void OnAddArtifact(object sender, EventArgs e)
